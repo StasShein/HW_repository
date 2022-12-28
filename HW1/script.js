@@ -83,9 +83,15 @@ function palindromes(str) {
         }
     }
 
+    for(i = 0; i < palin.length; i++){
+        if(palin[i].length <= 2){
+            palin.splice(i,1)
+        }
+    }
+
     console.log('Задание №5')
     console.log(palin)
-
+    
 }
 
 palindromes('madam was looking on the radar for a kayak')
