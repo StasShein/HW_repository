@@ -2,11 +2,12 @@
 function average(a, b, c) {
     let avr = a + b + c
 
-    console.log('Задание №1')
-    console.log(avr / 3)
+    return avr / 3
 }
 
-average(1,5,9)
+let HW1 = average(1,5,9)
+
+console.log(HW1)
 
 
 
@@ -14,31 +15,39 @@ average(1,5,9)
 
 ///2///
 function cilinder(r, h){
-    let volume = Math.PI * r**2 * h;
+
+    let volume = Math.PI * r ** 2 * h;
 
     let area = 2 * Math.PI * r ** 2 + 2 * Math.PI * r * h;
 
-    console.log('Задание №2')
-    console.log('volume:' + volume.toFixed(2), 'area:' + area.toFixed(2))
+    let cilinder = {volune : volume.toFixed(2), area : area.toFixed(2)}
+
+    return cilinder
+
 }
 
-cilinder(2,2)
+let HW2 = cilinder(2,2)
+console.log(HW2)
 
 
 
 
 ///3///
 function odd(start, finish){
-    console.log('Задание №3')
+
+    let result = ''
+
     for (i = start; i <= finish; i++){
-        if(i%2 !== 0){
-            console.log(i)
+        if(i % 2 !== 0){
+            result += i+' '
         }
     }
+
+    return result
 }
 
-odd(2,7)
-
+let HW3 = odd(2,7)
+console.log(HW3)
 
 
 
@@ -46,56 +55,48 @@ odd(2,7)
 ///4///
 function reverse(str) {
     
-    let res = ''
-    for(i = str.split('').length - 1; i>=0; i--){
-        res += str.split('')[i]
+    let result = ''
+
+    let spl = str.split('')
+
+    for(i = spl.length - 1; i>=0; i--){
+        result += spl[i]
     }
-    console.log('Задание №4')
-    console.log(res)
+    
+    return result
 
 }
 
-reverse('abcdef')
+let HW4 = reverse('abcdef')
+console.log(HW4)
 
 
 
 
 
 ///5///
-function palindromes(str) {
 
-    let reverse = ''
+function palindromes(str) {
 
     let palin = []
 
-    for (i= 0; i < str.split(' ').length; i++){
-        reverse += ' '
-        for(a=str.split(' ')[i].split('').length -1; a >= 0; a--){
-        reverse += str.split(' ')[i].split('')[a]
+    let strArray = str.split(' ')
+
+    let reverse = strArray.map(str => {
+        return [...str].reverse().join('')
+    });
+
+    for(i = 0; i <= strArray.length - 1; i++){
+        if(strArray[i] === reverse[i]){
+            palin.push(strArray[i])
         }
     }
 
-    reverse = reverse.trimStart()
-
-    for(i = 0; i<reverse.split(' ').length; i++){
-        if(reverse.split(' ')[i] === str.split(' ')[i]){
-            palin.push(str.split(' ')[i])
-        }
-    }
-
-    for(i = 0; i < palin.length; i++){
-        if(palin[i].length <= 2){
-            palin.splice(i,1)
-        }
-    }
-
-    console.log('Задание №5')
-    console.log(palin)
-    
+    return palin
 }
 
-palindromes('madam was looking on the radar for a kayak')
-
+let HW5 = palindromes('madam was looking on the radar for a kayak')
+console.log(HW5)
 
 
 ///6///
@@ -122,21 +123,23 @@ censorship(str, forbidden, '*')
 ///7///
 function urlParser(str) {
 
+    let url = str.match(/(\w{4,5}).\/{2}(\w*.\w*.\w*)\/(.*)/);
+
     let parseURL = {}
 
-        parseURL.protocol = str.split('/')[0].slice(0,-1)
+    parseURL.protocol = url[1];
 
-        parseURL.domain = str.split('/')[2]
+    parseURL.domain = url[2];
 
-        parseURL.resource = str.split('/')[3]+'/'+str.split('/')[4]
+    parseURL.resource = url[3];
 
-    console.log('Задание №7')
-    console.log(parseURL)
+    return parseURL
 
 }
 
+let parseURL = urlParser('http://www.devbg.org/forum/test/smth/index.php')
 
-urlParser('http://www.devbg.org/forum/index.php')
+console.log(parseURL)
 
 
 
@@ -166,12 +169,12 @@ function digitSum(num){
         summa += +num.split('')[i]
     }
 
-    console.log('Задание №9')
-    console.log(summa)
+    return summa
 
 }
 
-digitSum(123)
+let HW9 = digitSum(123)
+console.log(HW9)
 
 
 ///10///
