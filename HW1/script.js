@@ -125,17 +125,9 @@ censorship(str, forbidden, '*')
 ///7///
 function urlParser(str) {
 
-    let url = str.match(/(\w{4,5}).\/{2}(\w*.\w*.\w*)\/(.*)/);
+    let url = str.match(/(\w{4,5}):\/{2}(\w*.\w*.\w*)\/(.*)/);
 
-    let parseURL = {}
-
-    parseURL.protocol = url[1];
-
-    parseURL.domain = url[2];
-
-    parseURL.resource = url[3];
-
-    return parseURL
+    return url
 
 }
 
