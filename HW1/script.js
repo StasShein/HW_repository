@@ -37,16 +37,23 @@ function odd(start, finish){
 
     let result = ''
 
-    for (i = start; i <= finish; i++){
+    for (i = start; i <= finish; i += 2){
+        
         if(i % 2 !== 0){
+
             result += i+' '
+
+        }else{
+
+            result += i + 1 + ' '  
+
         }
     }
 
     return result
 }
 
-let HW3 = odd(2, 7)
+let HW3 = odd(4, 12)
 console.log(HW3)
 
 
