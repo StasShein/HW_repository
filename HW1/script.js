@@ -37,23 +37,16 @@ function odd(start, finish){
 
     let result = ''
 
-    for (i = start; i <= finish; i += 2){
-        
+    for (i = start; i <= finish; i++){
         if(i % 2 !== 0){
-
             result += i+' '
-
-        }else{
-
-            result += i + 1 + ' '  
-
         }
     }
 
     return result
 }
 
-let HW3 = odd(4, 12)
+let HW3 = odd(2, 7)
 console.log(HW3)
 
 
@@ -206,7 +199,7 @@ function socialRoles(age){
 
     for(i = 0; i < key.length; i++){
 
-        if(age >= key[i] && age <= key[i + 1]){
+        if(age >= +key[i] && age <= +key[i + 1]){
 
             return Object.values(ageGroup)[i]
 
@@ -216,7 +209,7 @@ function socialRoles(age){
 }
 
 
-// let socialRole = socialRoles(prompt('Введите ваш возраст'))
+let socialRole = socialRoles(prompt('Введите ваш возраст'))
 
-// console.log('Ваша социальная роль ' + socialRole)
+console.log('Ваша социальная роль ' + socialRole)
     
