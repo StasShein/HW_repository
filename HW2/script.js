@@ -52,21 +52,13 @@ let productCard = [
     },
 ]
 
-function addCatalog(){
-
-    let catalog = document.createElement('div')
-
-    document.body.appendChild(catalog)
-
-}
-
-addCatalog()
-
 function addProductCard(arr){
+
+    let productBlock = document.createElement('div')
 
     for(i = 0; i < arr.length; i++){
 
-        catalog.innerHTML +=
+        productBlock.innerHTML +=
 
         `<div class="card">
 
@@ -79,10 +71,11 @@ function addProductCard(arr){
             <p class="info"> ${arr[i].price} $ </p>
 
         </div>`
+
+        document.body.appendChild(productBlock)
     }
 
 }
 
 addProductCard(productCard)
-
     

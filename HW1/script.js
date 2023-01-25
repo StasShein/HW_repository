@@ -5,7 +5,7 @@ function average(a, b, c) {
     return avr / 3
 }
 
-let HW1 = average(1,5,9)
+let HW1 = average(1, 5, 9)
 
 console.log(HW1)
 
@@ -26,7 +26,7 @@ function cilinder(r, h){
 
 }
 
-let HW2 = cilinder(2,2)
+let HW2 = cilinder(2, 2)
 console.log(HW2)
 
 
@@ -46,7 +46,7 @@ function odd(start, finish){
     return result
 }
 
-let HW3 = odd(2,7)
+let HW3 = odd(2, 7)
 console.log(HW3)
 
 
@@ -108,7 +108,9 @@ const str = 'There once was a ship that put to sea The name of the ship was the 
 function censorship(str, forbidden, symbol){
 
     for(i = 0; i < forbidden.length;i++){
-        str = str.replaceAll(forbidden[i],symbol.repeat(forbidden[i].length))
+
+        str = str.replaceAll( forbidden[i], symbol.repeat(forbidden[i].length) )
+
     }
     
     console.log('Задание №6')
@@ -150,7 +152,7 @@ function backToFront(str, num){
     let i = str.slice(-num)
 
     console.log('Задание №8')
-    console.log(i+str+i)
+    console.log(i + str + i)
 
 }
 
@@ -161,15 +163,19 @@ backToFront('government', 3)
 ///9///
 function digitSum(num){
 
-    num = String(num)
-
-    let summa = 0
-
-    for(i = 0; i<=num.split('').length -1; i++){
-        summa += +num.split('')[i]
+    let summa = 0;
+      
+    while (num) {
+       
+        let tmp  = num % 10;
+       
+        num = (num - tmp) / 10;
+        
+        summa += tmp;
+        
     }
-
-    return summa
+       
+    return summa;
 
 }
 
@@ -177,24 +183,33 @@ let HW9 = digitSum(123)
 console.log(HW9)
 
 
-///10///
+///10/// 
 
 function socialRoles(age){
-    if(age<=15){
-        alert('Ваша социальная роль: Ребенок')
-    }else{
-        if(age<=25){
-            alert('Ваша социальная роль: Юноша') 
-        }else{
-            if(age<=65){
-                alert('Ваша социальная роль: Взрослый')
-            }else{
-                alert('Ваша социальная роль: Пожилой')
-            }
+
+    const ageGroup = {
+        0: 'Ребенок',
+        15: 'Юноша',
+        25: 'Взрослый',
+        65: 'Пожилой',
+        9999: 'Ошибка',
+    }
+
+    const key = Object.keys(ageGroup)
+
+    for(i = 0; i < key.length; i++){
+
+        if(age >= key[i] && age <= key[i + 1]){
+
+            return Object.values(ageGroup)[i]
+
         }
     }
+    
 }
 
 
-// socialRoles(prompt('Введите ваш возраст'))
+// let socialRole = socialRoles(prompt('Введите ваш возраст'))
 
+// console.log('Ваша социальная роль ' + socialRole)
+    
