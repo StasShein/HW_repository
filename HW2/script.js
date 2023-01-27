@@ -60,8 +60,8 @@ function addProductCard(arr){
 
         productBlock.innerHTML +=
 
-        `<div class="card">
-
+        `<div class="card">   
+        
             <img class="productImg" src="${arr[i].img}" alt="hoodie">
 
             <p class="info"> ${arr[i].name} </p>
@@ -69,13 +69,59 @@ function addProductCard(arr){
             <p class="info"> ${arr[i].about} </p>
 
             <p class="info"> ${arr[i].price} $ </p>
-
+            
         </div>`
-
-        document.body.appendChild(productBlock)
+        
+        document.body.append(productBlock)
     }
 
 }
 
 addProductCard(productCard)
+
+
+function addGoodsCard({imgSrc, name, about, price}){
+
+    let goodCard = document.createElement('div')
+    goodCard.className = 'card'
     
+
+    let imgDiv = document.createElement('div')
+    imgDiv.className = 'img'
+    
+    goodCard.appendChild(imgDiv)
+
+    let img = document.createElement('img')
+    img.className = 'productImg'
+    img.src = imgSrc
+
+    imgDiv.appendChild(img)
+
+    let goodName = document.createElement('p')
+    goodName.className = 'info'
+    goodName.innerHTML = name  
+
+    let goodAbout = document.createElement('p')
+    goodAbout.className = 'info'
+    goodAbout.innerHTML = about
+
+    let goodPrice = document.createElement('p')
+    goodPrice.className = 'info'
+    goodPrice.innerHTML = price
+
+    goodCard.append(goodName, goodAbout, goodPrice)
+
+    return document.body.appendChild(goodCard)
+
+}
+
+let goodCardHoodie = addGoodsCard(
+
+    {
+        imgSrc: './images/hoodie_PNG28.png',
+        name: 'Hoodie',
+        price: 10.99,
+        about: 'Very good product for gift',
+    },
+
+)
