@@ -37,9 +37,11 @@ function odd(start, finish){
 
     let result = ''
 
-    for (i = start; i <= finish; i++){
+    for (i = start; i <= finish; i += 2){
         if(i % 2 !== 0){
             result += i+' '
+        }else{
+            result += i+1
         }
     }
 
@@ -87,7 +89,7 @@ function palindromes(str) {
     });
 
     for(i = 0; i <= strArray.length - 1; i++){
-        if(strArray[i] === reverse[i]){
+        if(strArray[i] > 1 && strArray[i] === reverse[i]){
             palin.push(strArray[i])
         }
     }
@@ -113,7 +115,6 @@ function censorship(str, forbidden, symbol){
 
     }
     
-    console.log('Задание №6')
     console.log(str)
 }
 
@@ -196,8 +197,7 @@ function socialRoles(age){
             return Object.values(ageGroup)[i]
 
         }
-    }
-    
+    } 
 }
 
 
