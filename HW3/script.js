@@ -98,41 +98,14 @@ class Dealer{
         }
     }
 
-    sellVehicle(vehicle, vin){
+    sellVehicle(vin){
 
-        let obj;
-
-        if(vehicle === 'Truck' || vehicle === 'truck'){
-
-            obj = DATABASE.Trucks
-
-        }else{
-
-            obj = DATABASE.Buses
-        }
-
-        const indexVehicle = obj.findIndex(e => e.vinGet === vin)
        
-        obj.splice(indexVehicle, 1)
     }
 
     repaintVehicle(vehicle, vin){
 
-        let obj;
-
-        if(vehicle === 'Truck' || vehicle === 'truck'){
-
-            obj = DATABASE.Trucks
-
-        }else{
-
-            obj = DATABASE.Buses
-        }
-
-        const indexVehicle = obj.find(e => e.vinGet === vin)
         
-        indexVehicle.colorSet = 'Purple-Red'
-    
     }
 
 }
@@ -156,9 +129,9 @@ DATABASE.Buses = Buses
 
 DATABASE.addVehicle('Bus', 7733, 'Light Green', 50)
 
-DATABASE.sellVehicle('truck', 1112)
+// DATABASE.sellVehicle( 1112)
 
-DATABASE.repaintVehicle('bus', 6543)
+// // DATABASE.repaintVehicle('bus', 6543)
 
 console.log(DATABASE)
 
