@@ -79,90 +79,47 @@ class Bus extends Vehicle{
 }
 
 class Dealer{
-    #title
+    title
     #vehicle
 
-    constructor(title){
-        this.#title = title
-        this.#vehicle = [Trucks, Buses]
+    constructor(title, vehicle){
+        this.title = title
+        this.#vehicle = vehicle
     }
 
-    addVehicle(vehicle, vin, color, capacity){
+    addVehicle(vin, color, capacity){
 
-        if(vehicle === 'Bus' || vehicle === 'bus'){
-
-            this.#vehicle[1].push(new Bus(vin, color, capacity))
-
-        }else{
-
-            this.#vehicle[0].push(new Truck(vin, color, capacity))
-
-        }
+        this.#vehicle.push(new Bus(vin, color, capacity))
     }
 
-    sellVehicle(vehicle, vin){
+    sellVehicle(vin){
 
-        let obj;
-
-        if(vehicle === 'Truck' || vehicle === 'truck'){
-
-            obj = this.#vehicle[0]
-
-        }else{
-
-            obj = this.#vehicle[1]
-        }
-
-        const indexVehicle = obj.findIndex(e => e.vinGet === vin)
-       
-        obj.splice(indexVehicle, 1)
+        const index = this.#vehicle.findIndex(e => e.vinGet === vin)
+        this.#vehicle.splice(index, 1)
     }
 
-    repaintVehicle(vehicle, vin){
+    repaintVehicle(vin){
 
-        let obj;
-
-        if(vehicle === 'Truck' || vehicle === 'truck'){
-
-            obj = this.#vehicle[0]
-
-        }else{
-
-            obj = this.#vehicle[1]
-        }
-
-        const indexVehicle = obj.find(e => e.vinGet === vin)
-        
-        indexVehicle.colorSet = 'Purple-Red'
+        this.#vehicle.find(e => e.vinGet === vin).colorSet = 'Purple-Red'
     
     }
 
 }
 
-let Trucks = [
+const DATABASE = new Dealer ('Trucks&Buses',
+[
     new Truck(1112, 'Red', 10),
     new Truck(2332, 'Yellow', 20),
-    new Truck(5234, 'Green', 70)
-]
+    new Truck(5234, 'Green', 70), 
 
-let Buses = [
     new Bus(1112, 'Green', 50),
     new Bus(6543, 'Yellow', 25)
-]
+])
 
-const DATABASE = new Dealer ('Trucks&Buses')
+DATABASE.addVehicle(7733, 'Light Green', 50)
 
-DATABASE.addVehicle('Bus', 7733, 'Light Green', 50)
+DATABASE.sellVehicle(2332)
 
-DATABASE.sellVehicle('truck', 1112)
-
-DATABASE.repaintVehicle('bus', 6543)
+DATABASE.repaintVehicle(6543)
 
 console.log(DATABASE)
-
-console.log()
-
-
-
-
-
