@@ -112,13 +112,13 @@ const DATABASE = new Dealer ('Trucks&Buses',
     new Truck(2332, 'Yellow', 20),
     new Truck(5234, 'Green', 70), 
 
-    new Bus(1112, 'Green', 50),
+    new Bus(1122, 'Green', 50),
     new Bus(6543, 'Yellow', 25)
 ])
 
 DATABASE.addVehicle(7733, 'Light Green', 50)
 
-DATABASE.sellVehicle(2332)
+DATABASE.sellVehicle(1112)
 
 DATABASE.repaintVehicle(6543)
 
