@@ -80,32 +80,61 @@ class Bus extends Vehicle{
 
 class Dealer{
     #title
+    #vehicle
 
     constructor(title){
         this.#title = title
+        this.#vehicle = [Trucks, Buses]
     }
 
     addVehicle(vehicle, vin, color, capacity){
 
         if(vehicle === 'Bus' || vehicle === 'bus'){
 
-            Buses.push(new Bus(vin, color, capacity))
+            this.#vehicle[1].push(new Bus(vin, color, capacity))
 
         }else{
 
-            Trucks.push(new Truck(vin, color, capacity))
+            this.#vehicle[0].push(new Truck(vin, color, capacity))
 
         }
     }
 
-    sellVehicle(vin){
+    sellVehicle(vehicle, vin){
 
+        let obj;
+
+        if(vehicle === 'Truck' || vehicle === 'truck'){
+
+            obj = this.#vehicle[0]
+
+        }else{
+
+            obj = this.#vehicle[1]
+        }
+
+        const indexVehicle = obj.findIndex(e => e.vinGet === vin)
        
+        obj.splice(indexVehicle, 1)
     }
 
     repaintVehicle(vehicle, vin){
 
+        let obj;
+
+        if(vehicle === 'Truck' || vehicle === 'truck'){
+
+            obj = this.#vehicle[0]
+
+        }else{
+
+            obj = this.#vehicle[1]
+        }
+
+        const indexVehicle = obj.find(e => e.vinGet === vin)
         
+        indexVehicle.colorSet = 'Purple-Red'
+    
     }
 
 }
@@ -123,17 +152,15 @@ let Buses = [
 
 const DATABASE = new Dealer ('Trucks&Buses')
 
-DATABASE.Trucks = Trucks
-
-DATABASE.Buses = Buses
-
 DATABASE.addVehicle('Bus', 7733, 'Light Green', 50)
 
-// DATABASE.sellVehicle( 1112)
+DATABASE.sellVehicle('truck', 1112)
 
-// // DATABASE.repaintVehicle('bus', 6543)
+DATABASE.repaintVehicle('bus', 6543)
 
 console.log(DATABASE)
+
+console.log()
 
 
 
