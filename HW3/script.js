@@ -7,11 +7,11 @@ class Vehicle {
         this.#color = color
     }
 
-    get vinGet(){
+    get vin(){
         return this.#vin
     }
 
-    set vinSet(vin){
+    set vin(vin){
 
         if(typeof vin !== 'number'){
             throw new Error('Name should be a number value')
@@ -20,11 +20,11 @@ class Vehicle {
         }
     }
 
-    get colorGet(){
+    get color(){
         return this.#color
     }
 
-    set colorSet(color){
+    set color(color){
 
         if(typeof color !== 'string'){
             throw new Error('Name should be a string value')
@@ -42,11 +42,11 @@ class Truck extends Vehicle{
         this.#loadCapacity = loadCapacity
     }
 
-    get loadGet(){
+    get load(){
         return this.#loadCapacity
     }
 
-    set loadSet(loadCapacity){
+    set load(loadCapacity){
 
         if(typeof loadCapacity !== 'number'){
             throw new Error('Name should be a number value')
@@ -64,11 +64,11 @@ class Bus extends Vehicle{
         this.#sitsCapacity = sitsCapacity
     }
 
-    get sitsGet(){
+    get sits(){
         return this.#sitsCapacity
     }
 
-    set sitsSet(sitsCapacity){
+    set sits(sitsCapacity){
 
         if(typeof sitsCapacity !== 'number'){
             throw new Error('Name should be a number value')
@@ -87,39 +87,101 @@ class Dealer{
         this.#vehicle = vehicle
     }
 
-    addVehicle(vin, color, capacity){
-
-        this.#vehicle.push(new Bus(vin, color, capacity))
+    addVehicle(vehicle){
+        this.#vehicle.push(vehicle)
     }
 
     sellVehicle(vin){
 
-        const index = this.#vehicle.findIndex(e => e.vinGet === vin)
-        this.#vehicle.splice(index, 1)
+        const index = this.#vehicle.findIndex(e => e.vin === vin)
+        if(index !== -1){
+            this.#vehicle.splice(index, 1)
+        }
+       
     }
 
-    repaintVehicle(vin){
-
-        this.#vehicle.find(e => e.vinGet === vin).colorSet = 'Purple-Red'
-    
+    repaintVehicle(vin, color){
+        try{
+            this.#vehicle.find(e => e.vin === vin).color = color
+        }catch{
+            console.log('Vin not found')
+        }
     }
 
 }
 
-const DATABASE = new Dealer ('Trucks&Buses',
-[
-    new Truck(1112, 'Red', 10),
-    new Truck(2332, 'Yellow', 20),
-    new Truck(5234, 'Green', 70), 
+const DATABASE = {
+    dealer: {
+      title: "Trucks & Buses",
+    },
+    trucks: [
+      {
+        vin: 1122,
+        color: "Red",
+        loadCapacity: 10,
+      },
+      {
+        vin: 2332,
+        color: "Yellow",
+        loadCapacity: 20,
+      },
+      {
+        vin: 5234,
+        color: "Green",
+        loadCapacity: 70,
+      },
+    ],
+    buses: [
+      {
+        vin: 1112,
+        color: "Green",
+        sitsCapacity : 50,
+      },
+      {
+        vin: 6543,
+        color: "Yellow",
+        sitsCapacity : 25,
+      },
+    ],
+  };
 
-    new Bus(1122, 'Green', 50),
-    new Bus(6543, 'Yellow', 25)
-])
+let vehiclesList = [].concat(DATABASE.trucks, DATABASE.buses);
 
-DATABASE.addVehicle(7733, 'Light Green', 50)
+let vehicles = [];
 
-DATABASE.sellVehicle(1112)
+for(let i = 0; i < vehiclesList.length; i++){
+    if(vehiclesList[i].loadCapacity){
+        vehicles.push(
+            new Truck(
+                vehiclesList[i].vin, 
+                vehiclesList[i].color, 
+                vehiclesList[i].loadCapacity
+        ))
+    }else{
+        vehicles.push(
+            new Bus(
+                vehiclesList[i].vin, 
+                vehiclesList[i].color, 
+                vehiclesList[i].sitsCapacity
+        ))
+    }
+}
 
-DATABASE.repaintVehicle(6543)
+console.log(vehicles)
 
-console.log(DATABASE)
+const dealer = new Dealer ('Trucks&Buses', vehicles)
+
+const bus = new Bus(7733, 'Light Green', 50)
+
+dealer.addVehicle(bus)
+
+dealer.sellVehicle(2332)
+
+dealer.repaintVehicle(6543, 'Purple-Red')
+
+console.log(dealer)
+
+
+
+
+
