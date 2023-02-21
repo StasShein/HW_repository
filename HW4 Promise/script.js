@@ -1,25 +1,52 @@
 const prom1 = new Promise((res, rej) => {
-    res(1)
+    res(1)   
 })
 
 const prom2 = new Promise((res, rej) => {
-    res(2)
+    res(2) 
 })
 
-function all(arr) {
-    return Promise.all(arr)
+function all(arr){
+    return new Promise((res, rej) => {
+        let result = []
+
+        for(let i = 0; i < arr.length; i++){
+            arr[i]
+            .then(data => {
+                result[i] = data;
+            })
+        }
+
+        res(result)
+    })
 }
 
-all([prom1, prom2]).then(([res1, res2]) => console.log(res1, res2))
+all([prom1, prom2, prom2]).then(res => console.log(res))
 
 
+function summa(prom1, prom2) {
+    
+    return new Promise((res,rej) => {
 
+        let sum = 0;
 
-function summa(promise1, promise2) {
-    return all([promise1, promise2]).then(([res1, res2]) => console.log(res1 + res2))
+        let arr = [prom1, prom2];
+
+        for(let i = 0; i < arr.length; i++){
+            arr[i]
+            .then(data => {
+               sum += data   
+            }) 
+            res(sum)
+            
+        }
+
+    
+})
 }
 
-summa(prom1, prom2)
+
+summa(prom1, prom2).then(sum => console.log(sum))
 
 
 
